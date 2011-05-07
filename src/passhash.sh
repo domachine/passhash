@@ -30,7 +30,7 @@ cat <<EOF
 
  -- Passhash wrapper 0.0.6 --
 
-Usage: $APP [OPTIONS ...] <site-tag> <master-key>
+Usage: $APP [OPTIONS ...] <site-tag> [<master-key>]
 
 OPTIONS:
   -j <java-path>                Specify the path to the java-executable.
