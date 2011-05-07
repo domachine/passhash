@@ -9,7 +9,7 @@ strchr()
 
 isdigit()
 {
-    echo "$1" | egrep '^[0-9]+$'
+    echo "$1" | egrep '^[0-9]+$' &>/dev/null
     return $?
 }
 
