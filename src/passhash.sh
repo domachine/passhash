@@ -177,14 +177,22 @@ if [[ -z $RHINO_CLASSPATH ]] || ! [[ -f $RHINO_CLASSPATH ]]; then
     error "rhino jar-file not found: $RHINO_CLASSPATH"
 fi
 
-if [[ $# -ne 2 ]]; then
+# Will hold the masterkey
+MASTERKEY=
+if [[ $# -eq 1 ]]; then
+    # Not enough arguments -> ask the user for password
+    read -s -p "Password: " MASTERKEY
+    echo
+elif [[ $# -eq 2 ]]; then
+    MASTERKEY=$2
+else
     error "invalid number of command-line arguments."
 fi
 
 exec "$JAVA" -classpath "$RHINO_CLASSPATH" \
     org.mozilla.javascript.tools.shell.Main \
     -e "SITE_TAG=\"$1\"" \
-    -e "MASTERKEY=\"$2\"" \
+    -e "MASTERKEY=\"$MASTERKEY\"" \
     -e "SIZE=$SIZE" \
     -e "REQUIRE_DIGIT=$REQUIRE_DIGIT" \
     -e "REQUIRE_PUNCTUATION=$REQUIRE_PUNCTUATION" \
