@@ -178,10 +178,11 @@ if [[ -z $RHINO_CLASSPATH ]] || ! [[ -f $RHINO_CLASSPATH ]]; then
 fi
 
 # Will hold the masterkey
-MASTERKEY=
+MASTERKEY=${MASTERKEY:-}
+
 if [[ $# -eq 1 ]]; then
     # Not enough arguments -> ask the user for password
-    read -s -p "Password: " MASTERKEY
+    [[ -z $MASTERKEY ]] && read -s -p "Password: " MASTERKEY
     echo
 elif [[ $# -eq 2 ]]; then
     MASTERKEY=$2
