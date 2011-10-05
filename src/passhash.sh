@@ -94,7 +94,7 @@ error()
 
 # Parse command line.
 shortopts="j:r:h"
-TEMP=$(getopt -o "j:r:hs:" \
+TEMP=$(getopt -o "j:r:s:h" \
     --long "require-digit:,require-punctuation:,require-mixed-case:,\
 restrict-special:,restrict-digits:,size:,help" -n "$APP" -- "$@")
 
@@ -154,9 +154,9 @@ while true; do
 	    ;;
 	-s|--size)
 	    if isdigit "$2"; then
-		SIZE=18
+		    SIZE=$2
 	    else
-		error "size argument must be a number."
+		    error "size argument must be a number."
 	    fi
 	    ;;
 	-h|--help)
